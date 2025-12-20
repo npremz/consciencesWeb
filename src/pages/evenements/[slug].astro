@@ -1,0 +1,59 @@
+---
+import { getCollection, render, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map(event => ({
+    params: { slug: event.id },
+    props: { event },
+  }));
+}
+
+let { event } = Astro.props;
+const { slug } = Astro.params;
+
+// Fallback for SSR or dev edge cases
+if (!event && slug) {
+  event = await getEntry('events', slug);
+}
+
+if (!event) {
+  return Astro.redirect('/evenements');
+}
+
+const { Content } = await render(event);
+---
+
+<BaseLayout title={`${event.data.title} | Agenda | Consciences.be`} description={event.data.description}>
+  <article class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 md:px-8">
+    <header class="max-w-4xl mx-auto mb-12 md:mb-20 text-center">
+      <div class="reveal">
+        <span class="text-[#8A9A5B] font-bold text-xs md:text-sm uppercase tracking-[0.3em] md:tracking-[0.4em] mb-4 md:mb-6 block">{event.data.dateLabel}</span>
+      </div>
+      <h1 class="text-4xl md:text-8xl font-bold italic text-[#4A5D4E] mb-6 md:mb-10 reveal" style="animation-delay: 0.2s">
+        {event.data.title}
+      </h1>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-lg md:text-xl font-medium text-[#4A5D4E]/60 italic mb-8 md:mb-12 reveal" style="animation-delay: 0.4s">
+        <span>📍 {event.data.location}</span>
+        <span class="hidden md:inline">•</span>
+        <span>💰 {event.data.price}</span>
+      </div>
+    </header>
+    
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-20 rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-[#4A5D4E]/5 relative overflow-hidden">
+      <div class="prose prose-stone prose-lg md:prose-2xl prose-p:font-['Lora'] prose-p:text-[#2A362E]/80 prose-headings:font-['Cormorant_Garamond'] prose-headings:font-bold prose-headings:italic prose-headings:text-[#4A5D4E] prose-blockquote:border-[#8A9A5B] prose-blockquote:text-[#8A9A5B] prose-li:text-[#2A362E]/80 reveal" style="animation-delay: 0.6s">
+        <Content />
+      </div>
+
+      <div class="mt-12 md:mt-20 pt-8 md:pt-12 border-t border-[#4A5D4E]/10 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-10 reveal" style="animation-delay: 0.8s">
+        <a href="/evenements" class="text-base font-bold uppercase tracking-widest text-[#8A9A5B] flex items-center gap-4 group order-2 md:order-1">
+          <span class="transform group-hover:-translate-x-2 transition-transform duration-500">⟵</span> Retour à l'agenda
+        </a>
+        <a href="mailto:consciences@yahoo.com" class="w-full md:w-auto px-8 md:px-12 py-4 md:py-5 bg-[#4A5D4E] text-white text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-center hover:bg-[#8A9A5B] transition-all shadow-xl shadow-[#4A5D4E]/10 order-1 md:order-2">
+          S'inscrire à cet atelier
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

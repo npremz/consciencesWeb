@@ -1,0 +1,229 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Anne-Marie — Sophrologue certifiée à Profondeville. Cultiver l'essentiel en toute conscience." } = Astro.props;
+
+const services = await getCollection('pages');
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-[#FAF9F6] text-[#2A362E] font-['Lora'] selection:bg-[#8A9A5B]/20 antialiased overflow-x-hidden">
+		<!-- Subtle Floral Background Elements -->
+		<div class="fixed top-0 right-0 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] bg-[#8A9A5B]/5 rounded-full blur-[80px] md:blur-[120px] -z-10 pointer-events-none"></div>
+		<div class="fixed bottom-0 left-0 w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] bg-[#DCAE96]/5 rounded-full blur-[70px] md:blur-[100px] -z-10 pointer-events-none"></div>
+
+		<header class="fixed top-0 left-0 w-full z-[100] transition-all duration-500 bg-white/90 backdrop-blur-md border-b border-[#4A5D4E]/10">
+			<nav class="max-w-7xl mx-auto px-6 py-3 md:py-5 flex justify-between items-center">
+				<a href="/" class="group flex items-center gap-2">
+					<span class="text-xl md:text-3xl font-['Cormorant_Garamond'] font-bold text-[#4A5D4E]">
+						Consciences<span class="text-[#8A9A5B]">.be</span>
+					</span>
+				</a>
+
+				<!-- Mobile Menu Button -->
+				<button id="menu-toggle" class="lg:hidden p-2 -mr-2 text-[#4A5D4E] flex items-center justify-center" aria-label="Menu">
+					<div class="menu-icons relative w-7 h-7">
+						<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon absolute inset-0 transition-transform duration-300"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon absolute inset-0 transition-transform duration-300 scale-0 opacity-0"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+					</div>
+				</button>
+				
+				<!-- Desktop Navigation -->
+				<div class="hidden lg:flex items-center space-x-10">
+					<a href="/" class="text-[13px] uppercase tracking-[0.2em] font-medium text-[#4A5D4E] hover:text-[#8A9A5B] transition-all relative group">Accueil</a>
+					
+					<div class="relative group py-2">
+						<button class="text-[13px] uppercase tracking-[0.2em] font-medium text-[#4A5D4E] hover:text-[#8A9A5B] transition-all flex items-center gap-2 cursor-default">
+							Services
+							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+						</button>
+						<div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white shadow-2xl rounded-2xl p-4 border border-[#4A5D4E]/5 opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+							<div class="space-y-1">
+								{services.sort((a, b) => a.data.title.localeCompare(b.data.title)).map(service => (
+									<a href={`/${service.id}`} class="block px-4 py-3 text-sm font-medium text-[#4A5D4E] hover:bg-[#FAF9F6] hover:text-[#8A9A5B] rounded-xl transition-all">
+										{service.data.title}
+									</a>
+								))}
+							</div>
+						</div>
+					</div>
+
+					<a href="/evenements" class="text-[13px] uppercase tracking-[0.2em] font-medium text-[#4A5D4E] hover:text-[#8A9A5B] transition-all relative group">Agenda</a>
+					<a href="/tarifs" class="text-[13px] uppercase tracking-[0.2em] font-medium text-[#4A5D4E] hover:text-[#8A9A5B] transition-all relative group">Tarifs</a>
+					
+					<a href="/#contact" class="px-8 py-3 bg-[#4A5D4E] text-white text-[12px] uppercase tracking-[0.2em] font-bold hover:bg-[#8A9A5B] transition-all shadow-sm">
+						Contact
+					</a>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Mobile Navigation Menu -->
+		<div id="mobile-menu" class="lg:hidden fixed inset-0 bg-white z-[90] translate-x-full transition-transform duration-500 ease-in-out flex flex-col pt-32 px-8">
+			<div class="flex flex-col space-y-8">
+				<a href="/" class="mobile-link text-3xl font-['Cormorant_Garamond'] font-bold text-[#4A5D4E]">Accueil</a>
+				<div class="space-y-4">
+					<p class="text-xs uppercase tracking-widest text-[#8A9A5B] font-bold">Nos Services</p>
+					<div class="flex flex-col space-y-4 border-l-2 border-[#8A9A5B]/20 pl-6">
+						{services.sort((a, b) => a.data.title.localeCompare(b.data.title)).map(service => (
+							<a href={`/${service.id}`} class="mobile-link text-xl font-['Cormorant_Garamond'] text-[#4A5D4E]">
+								{service.data.title}
+							</a>
+						))}
+					</div>
+				</div>
+				<a href="/evenements" class="mobile-link text-3xl font-['Cormorant_Garamond'] font-bold text-[#4A5D4E]">Agenda</a>
+				<a href="/tarifs" class="mobile-link text-3xl font-['Cormorant_Garamond'] font-bold text-[#4A5D4E]">Tarifs</a>
+				<a href="/#contact" class="mobile-link mt-4 px-8 py-5 bg-[#4A5D4E] text-white text-center font-bold uppercase tracking-widest text-sm shadow-xl">
+					Prendre Contact
+				</a>
+			</div>
+		</div>
+		
+		<main>
+			<slot />
+		</main>
+
+		<footer class="bg-[#2D2D2D] text-[#FAF9F6] py-20 md:py-32 px-6 md:px-8 relative overflow-hidden">
+			<div class="absolute top-0 right-0 w-1/3 h-full bg-[#8A9A5B]/5 -skew-x-12 translate-x-1/2"></div>
+			<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 relative z-10">
+				<div class="lg:col-span-6">
+					<h2 class="text-4xl md:text-6xl font-['Cormorant_Garamond'] italic mb-6 md:mb-8">Consciences.be</h2>
+					<p class="text-lg md:text-xl text-[#FAF9F6]/60 font-['Cormorant_Garamond'] italic max-w-md leading-relaxed">
+						L'équilibre est un mouvement perpétuel, une danse entre soi, les autres et le monde.
+					</p>
+				</div>
+				<div class="lg:col-span-3 space-y-4">
+					<p class="text-[10px] uppercase tracking-[0.3em] text-[#8A9A5B] font-bold mb-6">Navigation</p>
+					<a href="/sophrologie" class="block hover:text-[#8A9A5B] transition-colors">Sophrologie</a>
+					<a href="/evenements" class="block hover:text-[#8A9A5B] transition-colors">Agenda</a>
+					<a href="/tarifs" class="block hover:text-[#8A9A5B] transition-colors">Grille tarifaire</a>
+				</div>
+				<div class="lg:col-span-3 space-y-4">
+					<p class="text-[10px] uppercase tracking-[0.3em] text-[#8A9A5B] font-bold mb-6">Contact</p>
+					<p class="break-all">consciences@yahoo.com</p>
+					<p>+32 474 29 49 83</p>
+					<p class="pt-4 text-[#FAF9F6]/40">Profondeville, Belgique</p>
+				</div>
+			</div>
+			<div class="max-w-7xl mx-auto mt-20 md:mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.2em] text-[#FAF9F6]/30">
+				<p>© 2025 Consciences.be — Tous droits réservés</p>
+				<p>Conception par @ni.premont</p>
+			</div>
+		</footer>
+
+		<script>
+			import Lenis from 'lenis';
+
+			// Initialize Lenis
+			const lenis = new Lenis({
+				duration: 1.2,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				touchMultiplier: 2,
+				infinite: false,
+			});
+
+			function raf(time: number) {
+				lenis.raf(time);
+				requestAnimationFrame(raf);
+			}
+
+			requestAnimationFrame(raf);
+
+			// Logic for Mobile Menu
+			const menuToggle = document.getElementById('menu-toggle');
+			const mobileMenu = document.getElementById('mobile-menu');
+			const menuIcon = document.querySelector('.menu-icon');
+			const closeIcon = document.querySelector('.close-icon');
+			const mobileLinks = document.querySelectorAll('.mobile-link');
+			
+			let isOpen = false;
+
+			function toggleMenu() {
+				isOpen = !isOpen;
+				if (isOpen) {
+					mobileMenu?.classList.remove('translate-x-full');
+					menuIcon?.classList.add('scale-0', 'opacity-0');
+					closeIcon?.classList.remove('scale-0', 'opacity-0');
+					document.body.style.overflow = 'hidden';
+					lenis.stop(); // Stop Lenis scroll when menu is open
+				} else {
+					mobileMenu?.classList.add('translate-x-full');
+					menuIcon?.classList.remove('scale-0', 'opacity-0');
+					closeIcon?.classList.add('scale-0', 'opacity-0');
+					document.body.style.overflow = '';
+					lenis.start(); // Restart Lenis scroll
+				}
+			}
+
+			menuToggle?.addEventListener('click', toggleMenu);
+			mobileLinks.forEach(link => link.addEventListener('click', () => {
+				if (isOpen) toggleMenu();
+			}));
+
+			// Handle anchor links
+			document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					const href = this.getAttribute('href');
+					if (!href) return;
+					
+					if (href.startsWith('/#')) {
+						if (window.location.pathname !== '/') return;
+						e.preventDefault();
+						const targetId = href.substring(2);
+						const targetElement = document.getElementById(targetId);
+						if (targetElement) {
+							lenis.scrollTo(targetElement, { offset: -100 });
+						}
+					} 
+					else if (href.startsWith('#')) {
+						e.preventDefault();
+						const targetId = href.substring(1);
+						const targetElement = document.getElementById(targetId);
+						if (targetElement) {
+							lenis.scrollTo(targetElement, { offset: -100 });
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	h1, h2, h3, h4 {
+		font-family: 'Cormorant Garamond', serif;
+		font-weight: 300;
+	}
+	
+	.reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	}
+
+	@keyframes reveal {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

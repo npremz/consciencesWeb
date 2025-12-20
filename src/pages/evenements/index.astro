@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const events = await getCollection('events');
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+// Sort: Future events first (closest to today), then past events (most recent first)
+const sortedEvents = events.sort((a, b) => {
+  const dateA = new Date(a.data.date);
+  const dateB = new Date(b.data.date);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<BaseLayout title="Agenda & Événements | Consciences.be" description="Découvrez nos prochains ateliers de sophrologie, balades méditatives et journées mieux-être à Namur et Lesve.">
+  <section class="pt-48 pb-32 px-8">
+    <div class="max-w-5xl mx-auto">
+      <header class="text-center mb-24">
+        <span class="text-[#8A9A5B] font-bold text-sm uppercase tracking-[0.4em] mb-6 block">Agenda</span>
+        <h1 class="text-6xl md:text-8xl font-bold italic text-[#4A5D4E] mb-8">Nos Prochains Ateliers</h1>
+        <p class="text-2xl text-[#2A362E]/70 font-['Lora'] max-w-2xl mx-auto leading-relaxed italic">
+          Des moments de partage et de reconnexion pour cultiver votre bien-être.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 gap-8">
+        {sortedEvents.map(event => {
+          const eventDate = new Date(event.data.date);
+          const isPast = eventDate < today;
+          return (
+            <div class={`bg-white p-10 rounded-[3rem] shadow-xl shadow-[#4A5D4E]/5 border border-[#4A5D4E]/5 flex flex-col md:flex-row justify-between items-center gap-10 hover:border-[#8A9A5B]/30 transition-all duration-500 ${isPast ? 'opacity-70' : ''}`}>
+              <div class="text-center md:text-left flex-1">
+                <div class="flex flex-wrap items-center gap-4 mb-4 justify-center md:justify-start">
+                  <span class="px-4 py-1 bg-[#8A9A5B]/10 text-[#8A9A5B] text-xs font-bold uppercase tracking-widest rounded-full inline-block">{event.data.dateLabel}</span>
+                  {isPast && <span class="px-4 py-1 bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest rounded-full inline-block">Événement passé</span>}
+                </div>
+                <h2 class="text-4xl font-bold text-[#4A5D4E] mb-4">{event.data.title}</h2>
+                <p class="text-lg text-[#2A362E]/70 mb-6 font-['Lora'] line-clamp-2">{event.data.description}</p>
+                <div class="flex items-center gap-4 justify-center md:justify-start text-sm font-bold text-[#4A5D4E]/40 italic">
+                  <span>📍 {event.data.location}</span>
+                </div>
+              </div>
+              <div class="flex flex-col items-center gap-6 min-w-[200px]">
+                <span class="text-4xl font-bold text-[#4A5D4E]">{event.data.price}</span>
+                <a href={`/evenements/${event.id}`} class="w-full text-center px-8 py-4 bg-[#4A5D4E] text-white font-bold uppercase tracking-widest text-xs hover:bg-[#8A9A5B] transition-all shadow-lg">Voir le programme</a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
