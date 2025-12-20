@@ -20,6 +20,9 @@ FROM node:25-alpine AS production
 
 WORKDIR /app
 
+# Install wget for health check
+RUN apk add --no-cache wget
+
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S astro -u 1001
