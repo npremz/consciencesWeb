@@ -28,14 +28,14 @@ const { Content } = await render(page);
 <BaseLayout title={`${page.data.title} | Consciences.be`} description={page.data.description}>
   <article class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 md:px-8">
     <header class="max-w-4xl mx-auto mb-12 md:mb-20 text-center">
-      <div class="reveal">
+      <div>
         <span class="text-[#8A9A5B] font-bold text-xs md:text-sm uppercase tracking-[0.3em] md:tracking-[0.4em] mb-4 md:mb-6 block">Service & Accompagnement</span>
       </div>
-      <h1 class="text-4xl md:text-8xl font-bold italic text-[#4A5D4E] mb-6 md:mb-10 reveal" style="animation-delay: 0.2s">
+      <h1 class="text-4xl md:text-8xl font-bold italic text-[#4A5D4E] mb-6 md:mb-10">
         {page.data.title}
       </h1>
-      <div class="w-16 md:w-20 h-1 bg-[#DCAE96] mx-auto mb-8 md:mb-10 reveal" style="animation-delay: 0.4s"></div>
-      <p class="text-xl md:text-2xl text-[#2A362E]/70 font-['Lora'] leading-relaxed reveal" style="animation-delay: 0.6s">
+      <div class="w-16 md:w-20 h-1 bg-[#DCAE96] mx-auto mb-8 md:mb-10"></div>
+      <p class="text-xl md:text-2xl text-[#2A362E]/70 font-['Lora'] leading-relaxed">
         {page.data.description}
       </p>
     </header>
@@ -46,11 +46,11 @@ const { Content } = await render(page);
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C10.9 14.36 12 14 14 12c1 2 1.15 3.06.08 6-.63 3.23-2.08 5-5.08 5-3 0-7-1-7-2Z"/></svg>
       </div>
 
-      <div class="prose prose-stone prose-lg md:prose-2xl prose-p:font-['Lora'] prose-p:text-[#2A362E]/80 prose-headings:font-['Cormorant_Garamond'] prose-headings:font-bold prose-headings:italic prose-headings:text-[#4A5D4E] prose-blockquote:border-[#8A9A5B] prose-blockquote:text-[#8A9A5B] prose-li:text-[#2A362E]/80 reveal" style="animation-delay: 0.8s">
+      <div class="prose prose-stone prose-lg md:prose-2xl prose-p:font-['Lora'] prose-p:text-[#2A362E]/80 prose-headings:font-['Cormorant_Garamond'] prose-headings:font-bold prose-headings:italic prose-headings:text-[#4A5D4E] prose-blockquote:border-[#8A9A5B] prose-blockquote:text-[#8A9A5B] prose-li:text-[#2A362E]/80">
         <Content />
       </div>
 
-      <div class="mt-12 md:mt-20 pt-8 md:pt-12 border-t border-[#4A5D4E]/10 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-10 reveal" style="animation-delay: 1s">
+      <div class="mt-12 md:mt-20 pt-8 md:pt-12 border-t border-[#4A5D4E]/10 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-10">
         <a href="/" class="text-base font-bold uppercase tracking-widest text-[#8A9A5B] flex items-center gap-4 group order-2 md:order-1">
           <span class="transform group-hover:-translate-x-2 transition-transform duration-500">⟵</span> Accueil
         </a>
