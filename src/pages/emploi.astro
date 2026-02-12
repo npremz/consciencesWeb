@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import PageHeader from '../components/PageHeader';
+import Footer from '../components/Footer';
+import { Briefcase, FileText, UserCheck, Zap, PenTool, Sparkles, CheckCircle } from 'lucide-react';
+
+import { getImage } from "astro:assets";
+import headerImage from "../assets/hero-bg.png";
+
+const optimizedHeader = await getImage({ src: headerImage, format: 'webp', width: 1920 });
+---
+
+<Layout title="Coaching Emploi & Carrière | Consciences">
+  <Navbar client:load />
+  
+  <PageHeader 
+    title="Journées Emploi" 
+    subtitle="Booster votre recherche d'emploi et révéler votre potentiel professionnel."
+    image={optimizedHeader.src}
+    client:load
+  />
+
+  <section class="py-20 3xl:py-40 max-w-[1000px] mx-auto px-6">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl font-serif text-emerald-900 mb-6">Un accompagnement sur mesure</h2>
+      <p class="text-neutral-600 leading-relaxed">
+        Que vous cherchiez un job étudiant, un premier emploi ou une reconversion, 
+        je vous aide à mettre en avant vos compétences humaines et professionnelles.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      
+      <div class="p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow flex items-center gap-6">
+        <Zap className="text-emerald-600 w-10 h-10 shrink-0" />
+        <div>
+          <h3 class="font-bold text-lg mb-1">Bilan de compétences</h3>
+          <p class="text-sm text-neutral-500">Diagnostic de vos forces et neutralisation des faiblesses.</p>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow flex items-center gap-6">
+        <FileText className="text-emerald-600 w-10 h-10 shrink-0" />
+        <div>
+          <h3 class="font-bold text-lg mb-1">CV & Lettre</h3>
+          <p class="text-sm text-neutral-500">Rédaction et correction pour un impact maximal.</p>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow flex items-center gap-6">
+        <UserCheck className="text-emerald-600 w-10 h-10 shrink-0" />
+        <div>
+          <h3 class="font-bold text-lg mb-1">Entretien d'embauche</h3>
+          <p class="text-sm text-neutral-500">Préparation verbale et non-verbale (posture, attitude).</p>
+        </div>
+      </div>
+
+       <div class="p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow flex items-center gap-6">
+        <PenTool className="text-emerald-600 w-10 h-10 shrink-0" />
+        <div>
+          <h3 class="font-bold text-lg mb-1">Tests Psychotechniques</h3>
+          <p class="text-sm text-neutral-500">Préparation aux tests logiques et de personnalité.</p>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Format & Tarif normalized with PNL style */}
+    <div class="bg-emerald-900 text-white rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto">
+      <h2 class="text-2xl font-serif mb-6">Format "Journée Intensive"</h2>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center text-left mb-10">
+        <div class="space-y-4">
+          <p class="text-emerald-100/90 leading-relaxed">
+            Une journée complète (9h - 16h30) dédiée entièrement à votre projet pour une efficacité maximale.
+          </p>
+          <ul class="space-y-2 text-sm text-emerald-200/80">
+             <li class="flex gap-2"><CheckCircle size={16} className="text-emerald-400 shrink-0"/> À votre domicile ou dans mes locaux</li>
+             <li class="flex gap-2"><CheckCircle size={16} className="text-emerald-400 shrink-0"/> Dossier complet remis en fin de journée</li>
+          </ul>
+        </div>
+        
+        <div class="text-center md:text-right border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
+          <p class="text-emerald-400 font-medium mb-2">Investissement</p>
+          <div class="text-4xl md:text-5xl font-serif mb-2">50 - 150€</div>
+          <p class="text-xs text-emerald-300/60 uppercase tracking-widest mb-6">Selon vos besoins spécifiques</p>
+          <a href="/contact" class="inline-block bg-white text-emerald-900 px-8 py-3 rounded-xl font-bold hover:bg-emerald-50 transition-colors">
+            Demander un devis
+          </a>
+        </div>
+      </div>
+
+      <div class="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
+        <p class="font-medium flex items-center gap-2 justify-center text-sm">
+          <Sparkles size={18} className="text-emerald-300" />
+          Révélez votre plein potentiel professionnel
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <Footer />
+</Layout>

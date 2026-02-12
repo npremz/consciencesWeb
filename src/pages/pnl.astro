@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import PageHeader from '../components/PageHeader';
+import Footer from '../components/Footer';
+import { Sparkles, Target, MessageCircle, Euro } from 'lucide-react';
+
+import { getImage } from "astro:assets";
+import headerImage from "../assets/hero-bg.png";
+
+const optimizedHeader = await getImage({ src: headerImage, format: 'webp', width: 1920 });
+---
+
+<Layout title="PNL | Consciences">
+  <Navbar client:load />
+  
+  <PageHeader 
+    title="Programmation Neuro-Linguistique" 
+    subtitle="Comprendre et restructurer votre expérience du monde."
+    image={optimizedHeader.src}
+    client:load
+  />
+
+  <section class="py-20 3xl:py-40 max-w-[1000px] mx-auto px-6">
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+      <div>
+        <h2 class="text-3xl font-serif text-emerald-900 mb-6">Qu'est-ce que la PNL ?</h2>
+        <p class="text-lg text-neutral-600 leading-relaxed mb-4">
+          La PNL est un ensemble de techniques de communication qui vise à comprendre comment nous structurons notre expérience subjective du monde.
+        </p>
+        <p class="text-neutral-600 leading-relaxed">
+          Elle repose sur l'idée que nos modèles de pensée, nos schémas de comportement et notre langage peuvent être analysés et modifiés pour améliorer notre communication, nos performances et nos relations.
+        </p>
+      </div>
+      <div class="bg-neutral-100 rounded-2xl p-8">
+        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+          <Target className="text-emerald-600" />
+          Objectifs
+        </h3>
+        <ul class="space-y-3 text-neutral-700">
+          <li>• Modifier les interactions pensées/émotions</li>
+          <li>• Débloquer des comportements limitants</li>
+          <li>• Améliorer sa communication</li>
+          <li>• Atteindre des objectifs précis</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Deroulement */}
+    <div class="mb-20">
+      <h2 class="text-3xl font-serif text-emerald-900 mb-8 text-center">Déroulement d'une séance</h2>
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="flex-1 bg-white p-6 rounded-xl shadow-sm border border-neutral-100">
+          <div class="text-emerald-500 font-bold text-xl mb-2">01</div>
+          <h3 class="font-bold mb-2">Définition</h3>
+          <p class="text-sm text-neutral-500">Nous définissons ensemble votre objectif précis.</p>
+        </div>
+        <div class="flex-1 bg-white p-6 rounded-xl shadow-sm border border-neutral-100">
+          <div class="text-emerald-500 font-bold text-xl mb-2">02</div>
+          <h3 class="font-bold mb-2">Identification</h3>
+          <p class="text-sm text-neutral-500">Repérage des schémas mentaux à l'origine des blocages.</p>
+        </div>
+        <div class="flex-1 bg-white p-6 rounded-xl shadow-sm border border-neutral-100">
+          <div class="text-emerald-500 font-bold text-xl mb-2">03</div>
+          <h3 class="font-bold mb-2">Transformation</h3>
+          <p class="text-sm text-neutral-500">Application d'outils concrets pour modifier ces schémas.</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Tarif Simple */}
+    <div class="max-w-2xl mx-auto space-y-12">
+      <div class="bg-emerald-900 text-white rounded-2xl p-8 md:p-12 text-center">
+        <h2 class="text-2xl font-serif mb-6">Investissement pour votre changement</h2>
+        <div class="text-4xl md:text-5xl font-serif mb-2">60€</div>
+        <p class="text-emerald-200 mb-8">la séance individuelle</p>
+        
+        <div class="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
+          <p class="font-medium flex items-center gap-2 justify-center">
+            <Sparkles size={18} />
+            Offre Fidélité : Carte 5 séances = 1 séance de sophro offerte
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <a href="/contact" class="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-xl shadow-emerald-900/10 flex items-center gap-3">
+          Commencer mon accompagnement
+          <Sparkles size={20} className="group-hover:animate-pulse" />
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <Footer />
+</Layout>

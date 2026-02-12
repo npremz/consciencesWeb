@@ -1,17 +1,29 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Presentation from '../components/Presentation';
+import Services from '../components/Services';
+import Footer from '../components/Footer';
 
+import { getImage } from "astro:assets";
+import heroImage from "../assets/hero-bg.png";
+import presentationImage from "../assets/anne-marie.webp";
+
+const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
+const optimizedPresentation = await getImage({ src: presentationImage, format: 'webp', width: 800 });
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Consciences | Sophrologie & Mieux-être à Profondeville">
+	<Navbar client:load />
+	
+	<main>
+		{/* @ts-ignore */}
+		<Hero backgroundImage={optimizedHero.src} />
+		{/* @ts-ignore */}
+		<Presentation image={optimizedPresentation.src} />
+		<Services />
+	</main>
+    
+    <Footer />
+</Layout>

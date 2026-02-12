@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import PageHeader from '../components/PageHeader';
+import Footer from '../components/Footer';
+import SubjectDropdown from '../components/SubjectDropdown';
+import { Mail, Phone, MapPin, Sparkles, Send, Facebook, Instagram } from 'lucide-react';
+
+import { getImage } from "astro:assets";
+import headerImage from "../assets/hero-bg.png";
+import profileImage from "../assets/anne-marie.webp";
+
+const optimizedHeader = await getImage({ src: headerImage, format: 'webp', width: 1920 });
+const optimizedProfile = await getImage({ src: profileImage, format: 'webp', width: 400 });
+---
+
+<Layout title="Contact | Consciences">
+  <Navbar client:load />
+  
+  <PageHeader 
+    title="Contactez-moi" 
+    subtitle="Une question ? Envie de prendre rendez-vous ? Je suis à votre écoute."
+    image={optimizedHeader.src}
+    client:load
+  />
+
+  <section class="py-20 3xl:py-40 bg-neutral-50 overflow-hidden relative">
+    {/* Decorative blur elements */}
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-200/30 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[120px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
+
+    <div class="max-w-4xl mx-auto px-6">
+      
+      {/* Intro section with Profile */}
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16">
+        <div class="relative">
+            <div class="absolute inset-0 bg-emerald-300 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10">
+              <img src={optimizedProfile.src} alt="Anne-Marie - Sophrologue" class="w-full h-full object-cover" />
+            </div>
+        </div>
+        
+        <div class="text-center md:text-left space-y-4">
+          <h2 class="text-3xl md:text-4xl font-serif text-emerald-950 flex items-center justify-center md:justify-start gap-3">
+            On chemine ensemble ? <Sparkles size={28} className="text-emerald-600 shrink-0" />
+          </h2>
+          <p class="text-neutral-700 max-w-lg leading-relaxed">
+            N'hésitez pas à me contacter pour un premier échange sans engagement ou pour fixer une séance au cabinet.
+          </p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-3 pt-2 text-emerald-900 font-bold">
+            <a href="tel:+32474294983" class="flex items-center gap-2 hover:text-emerald-700 transition-colors">
+                <Phone size={18} /> +32 474 29 49 83
+            </a>
+            <a href="mailto:consciences@yahoo.com" class="flex items-center gap-2 hover:text-emerald-700 transition-colors">
+                <Mail size={18} /> consciences@yahoo.com
+            </a>
+          </div>
+          
+          <div class="flex justify-center md:justify-start gap-4 pt-4">
+            <a href="https://www.facebook.com/profile.php?id=61554182713372" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-800 hover:bg-emerald-800 hover:text-white transition-all shadow-sm">
+                <Facebook size={20} />
+            </a>
+            <a href="https://www.instagram.com/consciences.am/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-800 hover:bg-emerald-800 hover:text-white transition-all shadow-sm">
+                <Instagram size={20} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Form Card */}
+      <div class="bg-white p-8 md:p-14 rounded-2xl shadow-xl shadow-emerald-900/5 border border-neutral-200/60 relative">
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+                <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-6">Prénom & Nom</label>
+                <input 
+                    type="text" 
+                    placeholder="Ex: Marie Dupont" 
+                    class="w-full px-8 py-4 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all placeholder:text-neutral-400" 
+                />
+            </div>
+            <div class="space-y-2">
+                <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-6">Adresse Email</label>
+                <input 
+                    type="email" 
+                    placeholder="Ex: marie@email.com" 
+                    class="w-full px-8 py-4 rounded-xl bg-neutral-50 border border-neutral-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all placeholder:text-neutral-400" 
+                />
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-6">Objet de votre demande</label>
+            <SubjectDropdown client:load />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-6">Votre message</label>
+            <textarea 
+                rows="5" 
+                placeholder="Décrivez brièvement votre besoin..." 
+                class="w-full px-8 py-6 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all resize-none placeholder:text-neutral-400"
+            ></textarea>
+          </div>
+          
+          <div class="flex justify-center pt-6">
+            <button class="group bg-emerald-800 text-white px-12 py-5 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-900/20 flex items-center gap-3">
+              Envoyer ma demande
+              <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

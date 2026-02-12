@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Sophrologie, PNL et Mieux-être à Profondeville avec Anne-Marie." />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+        
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+        
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+
+    <script>
+      import Lenis from 'lenis';
+
+      function initLenis() {
+        // Only load for screens 1024px and wider
+        if (window.innerWidth >= 1024) {
+          const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+          });
+
+          function raf(time: number) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+
+          requestAnimationFrame(raf);
+
+          // Handle anchor links
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+              const target = e.currentTarget as HTMLAnchorElement;
+              const targetId = target.getAttribute('href');
+              if (targetId && targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                  lenis.scrollTo(targetElement as HTMLElement);
+                }
+              }
+            });
+          });
+        }
+      }
+
+      // Initialize on load
+      initLenis();
+
+      // Re-initialize on view transitions if you use them, 
+      // but for now standard initialization is enough.
+    </script>
+	</body>
+</html>
