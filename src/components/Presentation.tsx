@@ -39,7 +39,7 @@ const Presentation: React.FC<PresentationProps> = ({ image }) => {
                 Avec bienveillance et positivité, je vous apprends à gérer votre stress, améliorer votre sommeil, et surmonter les étapes de vie difficiles.
               </p>
               
-              <div className="relative p-8 bg-white rounded-2xl shadow-sm border border-neutral-100 my-8">
+              <div className="relative p-6 md:p-8 bg-white rounded-2xl shadow-sm border border-neutral-100 my-8">
                 <Quote className="absolute top-6 left-6 text-emerald-100 w-10 h-10" />
                 <p className="relative z-10 text-neutral-800 font-serif text-xl text-center">
                   "Conscience de soi, de son potentiel, de son avenir en ce qu'il peut avoir de lumineux."

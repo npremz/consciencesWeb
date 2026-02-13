@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf, Brain, Sun, Users, Briefcase, Calendar } from 'lucide-react';
+import { Leaf, Brain, Sun, Users, Briefcase, Calendar, ArrowUpRight } from 'lucide-react';
 
 const Services = () => {
   const services = [
@@ -58,8 +58,11 @@ const Services = () => {
             <a 
               key={index} 
               href={service.link}
-              className="group bg-emerald-800/30 border border-emerald-700/50 p-8 rounded-2xl hover:bg-emerald-800 transition-all hover:-translate-y-1 duration-300 backdrop-blur-sm"
+              className="group relative bg-emerald-800/30 border border-emerald-700/50 p-6 md:p-8 rounded-2xl hover:bg-emerald-800 transition-all hover:-translate-y-1 duration-300 backdrop-blur-sm"
             >
+              <div className="absolute top-6 right-6 text-emerald-500/50 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
+                <ArrowUpRight size={24} />
+              </div>
               <div className="bg-emerald-950/50 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 {service.icon}
               </div>
