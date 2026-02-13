@@ -8,12 +8,12 @@ interface Props {
 
 const {
   title,
-  description = "Sophrologue à Namur et Profondeville. Accompagnement en sophrologie, PNL et développement personnel pour gérer le stress, améliorer le sommeil et renforcer la confiance en soi.",
+  description = "Anne-Marie van der Smissen, Sophrologue à Namur et Profondeville. Accompagnement en sophrologie, PNL et développement personnel à Namur pour gérer le stress, améliorer le sommeil et renforcer la confiance en soi.",
   image = "/og-image.png",
   url = ""
 } = Astro.props;
 
-const siteName = "Consciences";
+const siteName = "Consciences - Anne-Marie van der Smissen";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -21,7 +21,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="author" content="Anne-Marie - Consciences" />
+<meta name="author" content="Anne-Marie van der Smissen - Consciences" />
 <meta name="robots" content="index, follow" />
 <meta name="language" content="French" />
 <meta name="revisit-after" content="7 days" />
@@ -46,7 +46,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta property="twitter:image" content={new URL(image, Astro.url.origin)} />
 
 <!-- Keywords (for legacy search engines) -->
-<meta name="keywords" content="sophrologue Namur, sophrologue Profondeville, sophrologie Namur, sophrologie Belgium, PNL Namur, développement personnel, gestion du stress, confiance en soi, relaxation, mieux-être, sommeil, annxiété, sophrologue proche de moi" />
+<meta name="keywords" content="Anne-Marie van der Smissen, sophrologue Namur, sophrologue Profondeville, sophrologie Namur, sophrologie Belgium, PNL Namur, développement personnel Namur, gestion du stress Namur, confiance en soi, relaxation, mieux-être Namur, sommeil, annxiété, sophrologue proche de moi Namur" />
 
 <!-- Geo Tags -->
 <meta name="geo.region" content="BE-WNA" />
