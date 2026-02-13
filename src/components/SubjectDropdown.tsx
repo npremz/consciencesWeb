@@ -34,7 +34,7 @@ const SubjectDropdown = () => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-8 py-4 rounded-xl bg-neutral-50 border transition-all duration-300 flex items-center justify-between group ${
+        className={`w-full px-5 py-3 md:px-8 md:py-4 rounded-xl bg-neutral-50 border transition-all duration-300 flex items-center justify-between group ${
           isOpen 
             ? 'border-emerald-500 bg-white ring-4 ring-emerald-500/5' 
             : 'border-neutral-200 hover:border-emerald-300'
@@ -66,7 +66,7 @@ const SubjectDropdown = () => {
                 setSelected(option);
                 setIsOpen(false);
               }}
-              className={`w-full text-left px-6 py-3 rounded-lg flex items-start justify-between transition-colors gap-3 ${
+              className={`w-full text-left px-4 py-3 md:px-6 rounded-lg flex items-start justify-between transition-colors gap-3 ${
                 selected?.id === option.id 
                   ? 'bg-emerald-50 text-emerald-900 font-medium' 
                   : 'text-neutral-600 hover:bg-neutral-50 hover:text-emerald-700'
