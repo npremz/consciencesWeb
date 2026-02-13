@@ -72,8 +72,15 @@ const { title } = Astro.props;
       initLenis();
 
       document.addEventListener('astro:after-swap', () => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         initLenis();
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        // Ensure scroll to top on mobile where Lenis is not active
+        if (window.innerWidth < 1024) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }
       });
     </script>
 	</body>
