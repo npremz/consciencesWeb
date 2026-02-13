@@ -69,13 +69,15 @@ const optimizedProfile = await getImage({ src: profileImage, format: 'webp', wid
 
       {/* Main Form Card */}
       <div class="bg-white p-6 md:p-14 rounded-2xl shadow-xl shadow-emerald-900/5 border border-neutral-200/60 relative">
-        <form class="space-y-6">
+        <form id="contact-form" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
                 <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-4 md:ml-6">Prénom & Nom</label>
                 <input 
                     type="text" 
+                    name="name"
                     placeholder="Ex: Marie Dupont" 
+                    required
                     class="w-full px-5 py-3 md:px-8 md:py-4 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all placeholder:text-neutral-400" 
                 />
             </div>
@@ -83,7 +85,9 @@ const optimizedProfile = await getImage({ src: profileImage, format: 'webp', wid
                 <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-4 md:ml-6">Adresse Email</label>
                 <input 
                     type="email" 
+                    name="email"
                     placeholder="Ex: marie@email.com" 
+                    required
                     class="w-full px-5 py-3 md:px-8 md:py-4 rounded-xl bg-neutral-50 border border-neutral-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all placeholder:text-neutral-400" 
                 />
             </div>
@@ -97,18 +101,22 @@ const optimizedProfile = await getImage({ src: profileImage, format: 'webp', wid
           <div class="space-y-2">
             <label class="text-xs uppercase tracking-widest font-bold text-neutral-500 ml-4 md:ml-6">Votre message</label>
             <textarea 
+                name="message"
                 rows="5" 
                 placeholder="Décrivez brièvement votre besoin..." 
+                required
                 class="w-full px-5 py-4 md:px-8 md:py-6 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all resize-none placeholder:text-neutral-400"
             ></textarea>
           </div>
           
           <div class="flex justify-center pt-6">
-            <button class="w-full md:w-auto group bg-emerald-800 text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-900/20 flex items-center justify-center gap-3">
+            <button type="submit" id="submit-btn" class="w-full md:w-auto group bg-emerald-800 text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-900/20 flex items-center justify-center gap-3">
               Envoyer ma demande
               <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </button>
           </div>
+          
+          <div id="form-status" class="hidden text-center p-4 rounded-lg"></div>
         </form>
       </div>
 
@@ -116,4 +124,51 @@ const optimizedProfile = await getImage({ src: profileImage, format: 'webp', wid
   </section>
 
   <Footer />
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const statusDiv = document.getElementById('form-status');
+    
+    const subjectInput = document.querySelector('input[name="subject"]') as HTMLInputElement;
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Envoi en cours...';
+      
+      const formData = new FormData(form);
+      
+      if (subjectInput) {
+        formData.set('subject', subjectInput.value);
+      }
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          statusDiv?.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+          statusDiv?.classList.add('bg-emerald-100', 'text-emerald-700');
+          statusDiv!.textContent = 'Message envoyé avec succès ! Je vous répondrai rapidement.';
+          form.reset();
+        } else {
+          throw new Error(data.error || 'Erreur lors de l\'envoi');
+        }
+      } catch (error) {
+        statusDiv?.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-700');
+        statusDiv?.classList.add('bg-red-100', 'text-red-700');
+        statusDiv!.textContent = error instanceof Error ? error.message : 'Une erreur est survenue. Veuillez réessayer.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `Envoyer ma demande
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+      }
+    });
+  </script>
 </Layout>

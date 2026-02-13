@@ -1,23 +1,27 @@
 ---
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
+import SEO from '../components/SEO.astro';
 
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Sophrologie, PNL et Mieux-être à Profondeville avec Anne-Marie." />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<ViewTransitions />
+        
+        <SEO title={title} description={description} image={image} />
         
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
