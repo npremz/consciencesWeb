@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ backgroundImage }) => {
                  className="flex-1 sm:flex-none px-8 py-4 bg-emerald-800/90 hover:bg-emerald-700 text-white rounded-xl font-medium transition-all shadow-lg hover:shadow-emerald-900/20 flex items-center justify-center gap-2 group backdrop-blur-md"
                >
                    Prendre Rendez-vous
-                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
+                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0"/>
                </a>
                <a 
                  href="/#services"

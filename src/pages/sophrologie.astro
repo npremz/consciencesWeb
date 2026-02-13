@@ -68,7 +68,7 @@ const benefits = [
         <ul class="space-y-3">
           {benefits.map((item) => (
             <li class="flex items-center gap-3 text-neutral-700">
-              <Check size={18} className="text-emerald-500" />
+              <Check size={18} className="text-emerald-500 shrink-0" />
               {item}
             </li>
           ))}
@@ -92,10 +92,10 @@ const benefits = [
       
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         {/* Individual */}
-        <div class="bg-emerald-900 text-white rounded-2xl p-6 md:p-10 text-center flex flex-col justify-between">
+        <div class="bg-emerald-900 text-white rounded-2xl p-8 md:p-10 text-center flex flex-col justify-between">
           <div>
             <div class="flex justify-center mb-6">
-               <Users size={48} className="text-emerald-400" />
+               <Users size={32} className="text-emerald-400" />
             </div>
             <h3 class="text-2xl font-serif mb-6">Séance Individuelle</h3>
             <div class="text-4xl md:text-5xl font-serif mb-2">60€</div>
@@ -104,38 +104,7 @@ const benefits = [
           
           <div class="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
             <p class="font-medium flex items-center gap-2 justify-center text-sm">
-              <Sparkles size={24} />
-              Carte 5 séances : 250€
-            </p>
-          </div>
-        </div>
-
-        {/* Collective */}
-        <div class="bg-emerald-800 text-white rounded-2xl p-6 md:p-10 text-center flex flex-col justify-between">
-          <div>
-            <div class="flex justify-center mb-6">
-               <Heart size={48} className="text-emerald-300" />
-            </div>
-            <h3 class="text-2xl font-serif mb-6">Atelier Collectif</h3>
-            <div class="text-4xl md:text-5xl font-serif mb-2">15€</div>
-            <p class="text-emerald-100 mb-8 text-sm">Thématique généraliste, partage de groupe</p>
-          </div>
-          
-          <div class="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
-            <p class="font-medium flex items-center gap-2 justify-center text-sm">
-              <Sparkles size={24} />
-              Carte 10 séances : 100€
-            </p>
-          </div>
-        </div>
-            <h3 class="text-2xl font-serif mb-6">Séance Individuelle</h3>
-            <div class="text-4xl md:text-5xl font-serif mb-2">60€</div>
-            <p class="text-emerald-200 mb-8 text-sm">Premier entretien inclus + Relaxation personnalisée</p>
-          </div>
-          
-          <div class="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
-            <p class="font-medium flex items-center gap-2 justify-center text-sm">
-              <Sparkles size={16} />
+              <Sparkles size={16} className="shrink-0" />
               Carte 5 séances : 250€
             </p>
           </div>
@@ -154,7 +123,7 @@ const benefits = [
           
           <div class="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
             <p class="font-medium flex items-center gap-2 justify-center text-sm">
-              <Sparkles size={16} />
+              <Sparkles size={16} className="shrink-0" />
               Carte 10 séances : 100€
             </p>
           </div>
@@ -164,7 +133,7 @@ const benefits = [
       <div class="flex justify-center">
         <a href="/contact" class="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-xl shadow-emerald-900/10 flex items-center gap-3">
           Prendre rendez-vous
-          <Sparkles size={20} className="group-hover:animate-pulse" />
+          <Sparkles size={20} className="group-hover:animate-pulse shrink-0" />
         </a>
       </div>
     </div>
