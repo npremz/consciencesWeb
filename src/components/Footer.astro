@@ -1,0 +1,78 @@
+---
+import { Facebook, Instagram, Mail, Phone, MapPin, Heart } from 'lucide-react';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-neutral-950 text-neutral-300 pt-20 pb-10 border-t border-neutral-900">
+  <div class="max-w-[1440px] mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div class="space-y-6">
+        <div class="flex items-center gap-2">
+          <span class="font-serif text-2xl font-bold tracking-tight text-white">
+            Consciences<span class="text-emerald-400">.</span>
+          </span>
+        </div>
+        <p class="text-neutral-400 leading-relaxed">
+          Accompagnement holistique pour cultiver la conscience de soi et le mieux-être à Namur. Sophrologie, PNL et Yoga Nidra.
+        </p>
+        <div class="flex gap-4">
+          <a href="https://www.facebook.com/profile.php?id=61554182713372" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-neutral-900 flex items-center justify-center hover:bg-emerald-800 hover:text-white transition-all">
+            <Facebook size={18} />
+          </a>
+          <a href="https://www.instagram.com/consciences.am/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-neutral-900 flex items-center justify-center hover:bg-emerald-800 hover:text-white transition-all">
+            <Instagram size={18} />
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Services</h3>
+        <ul class="space-y-4">
+          <li><a href="/sophrologie" class="hover:text-emerald-400 transition-colors">Sophrologie</a></li>
+          <li><a href="/pnl" class="hover:text-emerald-400 transition-colors">PNL</a></li>
+          <li><a href="/ateliers" class="hover:text-emerald-400 transition-colors">Ateliers Mieux-Être</a></li>
+          <li><a href="/emploi" class="hover:text-emerald-400 transition-colors">Coaching Emploi</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Pratique</h3>
+        <ul class="space-y-4">
+          <li><a href="/agenda" class="hover:text-emerald-400 transition-colors">Agenda</a></li>
+          <li><a href="/contact" class="hover:text-emerald-400 transition-colors">Prendre RDV</a></li>
+          <li><a href="/contact" class="hover:text-emerald-400 transition-colors">Contact</a></li>
+          <li><a href="/#presentation" class="hover:text-emerald-400 transition-colors">À propos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Contact</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <MapPin size={18} className="text-emerald-500 shrink-0 mt-1" />
+            <span>Profondeville, Namur, Belgique</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Phone size={18} className="text-emerald-500 shrink-0" />
+            <span>+32 474 29 49 83</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Mail size={18} className="text-emerald-500 shrink-0" />
+            <span>consciences@yahoo.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
+      <p>© {currentYear} Consciences.be — Tous droits réservés.</p>
+      <div class="flex items-center gap-1">
+        <span>Créé avec</span>
+        <Heart size={14} className="text-rose-500 fill-rose-500" />
+        <span>par</span>
+        <a href="https://hordeagence.com" class="text-neutral-400 hover:text-emerald-400 transition-colors">Horde Agence</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import Presentation from '../components/Presentation';
-import Services from '../components/Services';
-import Footer from '../components/Footer';
+import Hero from '../components/Hero.astro';
+import Presentation from '../components/Presentation.astro';
+import Services from '../components/Services.astro';
+import Footer from '../components/Footer.astro';
 
 import { getImage } from "astro:assets";
 import heroImage from "../assets/hero-bg.png";
@@ -18,9 +18,7 @@ const optimizedPresentation = await getImage({ src: presentationImage, format: '
 	<Navbar client:load />
 	
 	<main>
-		{/* @ts-ignore */}
 		<Hero backgroundImage={optimizedHero.src} />
-		{/* @ts-ignore */}
 		<Presentation image={optimizedPresentation.src} />
 		<Services />
 	</main>

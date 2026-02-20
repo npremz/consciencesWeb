@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
-import PageHeader from '../components/PageHeader';
-import Footer from '../components/Footer';
+import PageHeader from '../components/PageHeader.astro';
+import Footer from '../components/Footer.astro';
 import SubjectDropdown from '../components/SubjectDropdown';
 import { Mail, Phone, MapPin, Sparkles, Send, Facebook, Instagram } from 'lucide-react';
 
@@ -21,7 +21,6 @@ const optimizedProfile = await getImage({ src: profileImage, format: 'webp', wid
     title="Contactez-moi" 
     subtitle="Une question ? Envie de prendre rendez-vous ? Je suis à votre écoute."
     image={optimizedHeader.src}
-    client:load
   />
 
   <section class="py-20 3xl:py-40 bg-neutral-50 overflow-hidden relative">

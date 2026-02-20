@@ -1,0 +1,74 @@
+---
+import { ArrowRight, MapPin, Sparkles } from 'lucide-react';
+
+interface Props {
+  backgroundImage?: string;
+}
+
+const { backgroundImage } = Astro.props as Props;
+---
+
+<div class="relative w-full h-[100svh] md:h-screen md:min-h-[600px] flex flex-col justify-end overflow-hidden pb-8 md:pb-12 3xl:pb-24 px-4 md:px-8">
+  <div class="absolute inset-0 z-0">
+    <img
+      src={backgroundImage || "/Gemini_Generated_Image_ed53uzed53uzed53.png"}
+      alt="Atmosphère nature et sérénité - Consciences"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col h-full justify-end">
+    <div class="mb-8 md:mb-16 animate-fade-in-up">
+      <h1 class="text-5xl md:text-8xl lg:text-9xl font-serif text-white/95 tracking-tighter mix-blend-overlay opacity-90 mb-2 md:mb-4">
+        CONSCIENCES
+      </h1>
+      <p class="text-emerald-50/90 text-lg md:text-2xl font-light ml-1 md:ml-4 tracking-wide flex items-start gap-3">
+        <span class="w-8 md:w-12 h-[1px] bg-emerald-200/50 mt-3 md:mt-5"></span>
+        Sophrologie & Mieux-être à Profondeville
+      </p>
+    </div>
+
+    <div class="w-full bg-neutral-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8 shadow-2xl animate-fade-in-up delay-200">
+      <div class="flex flex-col md:flex-row gap-6 md:gap-12 text-white/90 w-full lg:w-auto">
+        <div class="flex items-start gap-3">
+          <div class="p-2 bg-white/10 rounded-full text-emerald-300">
+            <MapPin size={20} />
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xs uppercase opacity-60 tracking-wider font-semibold">Lieu</span>
+            <span class="font-medium text-lg">Profondeville, BE</span>
+          </div>
+        </div>
+
+        <div class="hidden md:block w-px h-12 bg-white/10"></div>
+
+        <div class="flex items-start gap-3">
+          <div class="p-2 bg-white/10 rounded-full text-emerald-300">
+            <Sparkles size={20} />
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xs uppercase opacity-60 tracking-wider font-semibold">Expertise</span>
+            <span class="font-medium text-lg">Stress, Sommeil & Transition</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+        <a
+          href="/contact"
+          class="flex-1 sm:flex-none px-8 py-4 bg-emerald-800/90 hover:bg-emerald-700 text-white rounded-xl font-medium transition-all shadow-lg hover:shadow-emerald-900/20 flex items-center justify-center gap-2 group backdrop-blur-md"
+        >
+          Prendre Rendez-vous
+          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0" />
+        </a>
+        <a
+          href="/#services"
+          class="flex-1 sm:flex-none px-8 py-4 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-xl font-medium transition-colors backdrop-blur-sm text-center"
+        >
+          Découvrir les pratiques
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
