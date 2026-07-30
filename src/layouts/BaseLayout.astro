@@ -5,11 +5,54 @@ import { getCollection } from 'astro:content';
 interface Props {
 	title: string;
 	description?: string;
+	canonical?: string;
+	noindex?: boolean;
 }
 
-const { title, description = "Anne-Marie — Sophrologue certifiée à Profondeville. Cultiver l'essentiel en toute conscience." } = Astro.props;
+const {
+	title,
+	description = "Anne-Marie Van Der Smissen, sophrologue certifiée à Profondeville, près de Namur. Accompagnement du stress, du sommeil et des transitions de vie.",
+	canonical,
+	noindex = false,
+} = Astro.props;
+
+const normalizedPathname = Astro.url.pathname === '/'
+	? '/'
+	: `${Astro.url.pathname.replace(/\/+$/, '')}/`;
+const canonicalURL = canonical
+	? new URL(canonical, Astro.site)
+	: new URL(normalizedPathname, Astro.site);
+const socialImageURL = new URL('/imgs/anne_marie.jpg', Astro.site);
 
 const services = await getCollection('pages');
+
+const localBusinessSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	'@id': new URL('/#sophrologue', Astro.site).href,
+	name: 'Consciences — Anne-Marie Van Der Smissen',
+	url: new URL('/', Astro.site).href,
+	image: socialImageURL.href,
+	description,
+	email: 'mailto:consciences@yahoo.com',
+	telephone: '+32474294983',
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'Profondeville',
+		addressRegion: 'Namur',
+		addressCountry: 'BE',
+	},
+	areaServed: [
+		{ '@type': 'City', name: 'Namur' },
+		{ '@type': 'AdministrativeArea', name: 'Province de Namur' },
+		{ '@type': 'City', name: 'Profondeville' },
+	],
+	founder: {
+		'@type': 'Person',
+		name: 'Anne-Marie Van Der Smissen',
+		jobTitle: 'Sophrologue certifiée',
+	},
+};
 ---
 
 <!doctype html>
@@ -21,6 +64,21 @@ const services = await getCollection('pages');
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="sitemap" href="/sitemap.xml" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="fr_BE" />
+		<meta property="og:site_name" content="Consciences.be" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={socialImageURL} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageURL} />
+		<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">

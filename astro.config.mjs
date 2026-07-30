@@ -10,6 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://consciences.be',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [react(), markdoc(), keystatic()],

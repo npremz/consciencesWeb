@@ -25,7 +25,7 @@ if (!page) {
 const { Content } = await render(page);
 ---
 
-<BaseLayout title={`${page.data.title} | Consciences.be`} description={page.data.description}>
+<BaseLayout title={page.data.seoTitle ?? `${page.data.title} | Consciences.be`} description={page.data.description}>
   <article class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 md:px-8">
     <header class="max-w-4xl mx-auto mb-12 md:mb-20 text-center">
       <div>
