@@ -20,12 +20,16 @@ const benefits = [
 ];
 ---
 
-<Layout title="Sophrologie à Namur | Anne Marie Van Der Smissen - Consciences">
+<Layout
+  title="Sophrologie à Namur et Profondeville | Consciences"
+  description="Séances de sophrologie à Profondeville, près de Namur : stress, sommeil, émotions et confiance en soi. Découvrez l'accompagnement d'Anne-Marie."
+  serviceType="Séances de sophrologie à Namur et Profondeville"
+>
   <Navbar client:load />
   
   <PageHeader 
-    title="La Sophrologie" 
-    subtitle="Science de la conscience et des valeurs de l'existence."
+    title="Sophrologie à Namur"
+    subtitle="Des séances individuelles à Profondeville pour retrouver calme, équilibre et confiance."
     image={optimizedHeader.src}
   />
 
@@ -34,11 +38,42 @@ const benefits = [
     {/* Intro Definition */}
     <div class="mb-20 text-center">
       <h2 class="text-3xl font-serif text-emerald-900 mb-6">Qu'est-ce que la sophrologie ?</h2>
-      <p class="text-lg text-neutral-600 leading-relaxed">
+      <p class="text-lg text-neutral-600 leading-relaxed mb-5">
         Une série d'outils imaginés qui vise à mieux nous connaître pour pouvoir agir sur notre corps, 
         notre esprit et nos émotions. Ainsi, nous améliorons notre bien-être et notre santé, 
         ce qui va nous apporter un équilibre nous rapprochant du bonheur.
       </p>
+      <p class="text-lg text-neutral-600 leading-relaxed">
+        Sophrologue certifiée dans la région de Namur, je vous accueille à Profondeville dans un cadre
+        bienveillant. Les séances associent respiration, détente musculaire et visualisation positive.
+        L'accompagnement est adapté à votre situation, à votre rythme et à l'objectif défini ensemble.
+      </p>
+    </div>
+
+    {/* Local practice */}
+    <div class="mb-20 bg-neutral-50 border border-neutral-100 rounded-2xl p-6 md:p-10">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-3xl font-serif text-emerald-900 mb-5">Votre séance près de Namur</h2>
+          <p class="text-neutral-600 leading-relaxed mb-4">
+            Le cabinet se situe à Profondeville, dans la province de Namur. Il accueille les adultes,
+            adolescents et enfants qui souhaitent disposer d'outils concrets à réutiliser au quotidien.
+          </p>
+          <p class="text-neutral-600 leading-relaxed">
+            Un premier échange permet de comprendre votre besoin. Chaque séance comprend ensuite un
+            temps d'écoute, une pratique guidée et un retour sur les sensations vécues.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-3xl font-serif text-emerald-900 mb-5">Pourquoi consulter ?</h2>
+          <ul class="space-y-3 text-neutral-700">
+            <li class="flex items-start gap-3"><Check size={18} className="text-emerald-500 shrink-0 mt-1" />Apaiser le stress et mieux vivre ses émotions</li>
+            <li class="flex items-start gap-3"><Check size={18} className="text-emerald-500 shrink-0 mt-1" />Préparer un examen ou une étape importante</li>
+            <li class="flex items-start gap-3"><Check size={18} className="text-emerald-500 shrink-0 mt-1" />Retrouver un sommeil plus serein</li>
+            <li class="flex items-start gap-3"><Check size={18} className="text-emerald-500 shrink-0 mt-1" />Développer la confiance et la connaissance de soi</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     {/* 3 Pillars Grid */}

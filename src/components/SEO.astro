@@ -3,18 +3,72 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
-  url?: string;
+  serviceType?: string;
 }
 
 const {
   title,
-  description = "Anne Marie Van Der Smissen, Sophrologue à Namur et Profondeville. Accompagnement en sophrologie, PNL et développement personnel à Namur pour gérer le stress, améliorer le sommeil et renforcer la confiance en soi.",
+  description = "Anne-Marie Van Der Smissen, sophrologue certifiée près de Namur, vous accompagne à Profondeville pour le stress, le sommeil et la confiance en soi.",
   image = "/og-image.png",
-  url = ""
+  serviceType,
 } = Astro.props;
 
 const siteName = "Consciences - Anne Marie Van Der Smissen";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const absoluteImage = new URL(image, Astro.site);
+
+const professionalService = {
+  "@type": "ProfessionalService",
+  "@id": "https://consciences.be/#business",
+  name: "Consciences",
+  description: "Cabinet de sophrologie, PNL et mieux-être à Profondeville, dans la région de Namur.",
+  url: "https://consciences.be/",
+  image: absoluteImage.toString(),
+  telephone: "+32474294983",
+  email: "consciences@yahoo.com",
+  founder: {
+    "@type": "Person",
+    name: "Anne-Marie Van Der Smissen",
+    jobTitle: "Sophrologue certifiée",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Profondeville",
+    addressRegion: "Namur",
+    addressCountry: "BE",
+  },
+  areaServed: [
+    { "@type": "City", name: "Namur" },
+    { "@type": "AdministrativeArea", name: "Province de Namur" },
+  ],
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61554182713372",
+    "https://www.instagram.com/consciences.am/",
+  ],
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://consciences.be/#website",
+      url: "https://consciences.be/",
+      name: siteName,
+      inLanguage: "fr-BE",
+    },
+    professionalService,
+    ...(serviceType
+      ? [{
+          "@type": "Service",
+          name: serviceType,
+          url: canonicalURL.toString(),
+          provider: { "@id": "https://consciences.be/#business" },
+          areaServed: professionalService.areaServed,
+        }]
+      : []),
+  ],
+};
 ---
 
 <!-- Primary Meta Tags -->
@@ -22,9 +76,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Anne Marie Van Der Smissen - Consciences" />
-<meta name="robots" content="index, follow" />
-<meta name="language" content="French" />
-<meta name="revisit-after" content="7 days" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -34,7 +86,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url.origin)} />
+<meta property="og:image" content={absoluteImage} />
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content="fr_BE" />
 
@@ -43,13 +95,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url.origin)} />
+<meta property="twitter:image" content={absoluteImage} />
 
-<!-- Keywords (for legacy search engines) -->
-<meta name="keywords" content="Anne Marie Van Der Smissen, sophrologue Namur, sophrologue Profondeville, sophrologie Namur, sophrologie Belgium, PNL Namur, développement personnel Namur, gestion du stress Namur, confiance en soi, relaxation, mieux-être Namur, sommeil, annxiété, sophrologue proche de moi Namur" />
-
-<!-- Geo Tags -->
-<meta name="geo.region" content="BE-WNA" />
-<meta name="geo.placename" content="Namur" />
-<meta name="geo.position" content="50.467;4.867" />
-<meta name="ICBM" content="50.467, 4.867" />
+<!-- Local business and service data -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
