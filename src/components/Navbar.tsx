@@ -24,12 +24,12 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Accueil', href: '/' },
-    { name: 'Sophrologie', href: '/sophrologie' },
-    { name: 'PNL', href: '/pnl' },
-    { name: 'Ateliers', href: '/ateliers' },
-    { name: 'Emploi', href: '/emploi' },
-    { name: 'Agenda', href: '/agenda' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Sophrologie', href: '/sophrologie/' },
+    { name: 'PNL', href: '/pnl/' },
+    { name: 'Ateliers', href: '/ateliers/' },
+    { name: 'Emploi', href: '/emploi/' },
+    { name: 'Agenda', href: '/agenda/' },
+    { name: 'Contact', href: '/contact/' },
   ];
 
   return (
@@ -69,7 +69,7 @@ const Navbar = () => {
             </a>
           ))}
           <a 
-            href="/contact"
+            href="/contact/"
             className={`px-5 py-2 rounded-xl text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-lg ${
                isScrolled 
                  ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-900/20' 
@@ -132,7 +132,7 @@ const Navbar = () => {
           }`}
           style={{ transitionDelay: `${isMobileMenuOpen ? navLinks.length * 75 : 0}ms` }}>
             <a 
-              href="/contact"
+              href="/contact/"
               className="inline-block px-10 py-4 bg-emerald-600 text-white rounded-xl text-lg font-bold shadow-xl shadow-emerald-900/20 active:scale-95 transition-transform"
               onClick={() => setIsMobileMenuOpen(false)}
             >

@@ -1,7 +1,5 @@
 import type { APIRoute } from 'astro';
 
-export const prerender = true;
-
 export const GET: APIRoute = ({ site }) => {
   const base = site ?? new URL(import.meta.env.SITE || 'https://consciences.be');
   const sitemapUrl = new URL('/sitemap.xml', base).toString();
